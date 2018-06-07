@@ -8,8 +8,10 @@ import { cryptoCurrency100List, actionFilteringEventDispatch } from '../../redux
 
 
 class Header extends Component {
-  filtering_event(event) {
+  clickSearch() {
     this.props.cryptoCurrency100List_dispatch()
+  }
+  filtering_event(event) {
     this.props.filtering_event_dispatch(event.target.value)
   }
   render() {
@@ -19,7 +21,7 @@ class Header extends Component {
           <div id="title">
             <img id="img-logo" src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_1.svg" alt="logo"></img>
           </div>
-          <input placeholder="Search Name on this page" onChange={(e)=> this.filtering_event(e)} id="searchBar" type="text" name="search"/>
+          <a onClick={() => this.clickSearch()}><input placeholder="Search Name on this page" onChange={(e)=> this.filtering_event(e)} id="searchBar" type="text" name="search"/></a>
         </div>
       </div>
     );
