@@ -3,21 +3,35 @@ import { connect } from 'react-redux'
 
 import '../../style/header.css';
 
+import { cryptoCurrency100List, actionFilteringEventDispatch } from '../../redux/action/index_action.jsx'
+
+
 
 class Header extends Component {
+  filtering_event(event) {
+    this.props.cryptoCurrency100List_dispatch()
+    this.props.filtering_event_dispatch(event.target.value)
+  }
   render() {
     return (
       <div>
         <div className="header">
           <div id="title">
-            <img id="img-logo" src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_1.svg"></img>
+            <img id="img-logo" src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_1.svg" alt="logo"></img>
           </div>
-          <input id="searchBar" type="text" name="search"/>
+          <input placeholder="Search Name on this page" onChange={(e)=> this.filtering_event(e)} id="searchBar" type="text" name="search"/>
         </div>
       </div>
     );
   }
 }
 
-const Conn = connect(null, null)(Header)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    filtering_event_dispatch: (payload) => dispatch(actionFilteringEventDispatch(payload)),
+    cryptoCurrency100List_dispatch: () => dispatch(cryptoCurrency100List()),
+  }
+}
+
+const Conn = connect(null, mapDispatchToProps)(Header)
 export default Conn;
