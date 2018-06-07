@@ -17,7 +17,7 @@ class Content extends Component {
   render() {
     if (this.props.cryptoCurrencyList_state) {
       return (
-        <div>
+        <div className="content">
           {
             this.props.cryptoCurrencyList_state.map(item => {
               return (
