@@ -10,11 +10,10 @@ export const actionCryptoCurrencyList = (payload) => {
 
 export const cryptoCurrencyList = () => {
   return (dispatch, getState) => {
-    const url = `https://api.coinmarketcap.com/v2/listings/`
+    const url = `https://api.coinmarketcap.com/v2/ticker/?start=1&limit=30&structure=array`
     axios.get(url)
     .then(resp => {
-      console.log(resp);
-      dispatch(actionCryptoCurrencyList(resp))
+      dispatch(actionCryptoCurrencyList(resp.data.data))
     }).catch(err => console.log(err))
   }
 }

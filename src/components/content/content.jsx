@@ -5,21 +5,35 @@ import { cryptoCurrencyList } from '../../redux/action/index_action.jsx'
 
 
 import '../../App.css';
+// {JSON.stringify(Object.values(this.props.cryptoCurrencyList_state.cryptoCurrencyList))}
 
 
 class Content extends Component {
-
 
   componentWillMount() {
     this.props.cryptoCurrencyList_dispatch()
   }
 
   render() {
-    return (
-      <div>
-        <div>aku adalah content</div>
-      </div>
-    );
+    if (this.props.cryptoCurrencyList_state) {
+      return (
+        <div>
+          {
+            this.props.cryptoCurrencyList_state.map(item => {
+              return (
+                <div key={item.id}>{item.name}</div>
+              )
+            })
+          }
+        </div>
+      );
+    }
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    cryptoCurrencyList_state: state.cryptoCurrencyList
   }
 }
 
@@ -29,5 +43,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const Conn = connect(null, mapDispatchToProps)(Content)
+const Conn = connect(mapStateToProps, mapDispatchToProps)(Content)
 export default Conn;
