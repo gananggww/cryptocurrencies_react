@@ -16,7 +16,7 @@ class Modal extends Component {
         <div className="modal" style={{display:`${this.props.openModal_state}`}}>
           <div class="modal-content">
             <a onClick={() => this.close_modal()} class="close">&times;</a>
-            <p>Some text in the Modal..</p>
+            <p>Buy something</p>
           </div>
         </div>
       </div>
