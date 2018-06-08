@@ -30,9 +30,15 @@
   display: flex;
 }
 
+.text-sort {
+  cursor: pointer;
+}
+
+.text-sort:hover {
+  text-decoration: underline;
+}
 .status-detail {
   display: flex;
-  /*justify-content: center;*/
   border-left: solid 1px lightgrey;
   align-items: center;
   width: 150px;

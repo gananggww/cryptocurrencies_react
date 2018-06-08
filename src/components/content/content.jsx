@@ -3,13 +3,23 @@ import { connect } from 'react-redux'
 
 import { cryptoCurrencyList } from '../../redux/action/index_action.jsx'
 import { searchCoin } from '../../EXT/filter.js'
-
+import Sort from './sort.jsx';
 
 import '../../style/content.css';
 
 
 class Content extends Component {
+
   componentWillMount() {
+    this.props.cryptoCurrencyList_dispatch()
+  }
+  componentDidMount() {
+    setInterval(() => {
+      this.dispatch_cron()
+    }, 86400000)
+  }
+
+  dispatch_cron () {
     this.props.cryptoCurrencyList_dispatch()
   }
 
@@ -27,6 +37,7 @@ class Content extends Component {
     if (this.props.cryptoCurrencyList_state) {
       return (
         <div className="container">
+          <Sort/>
           {
             this.props.cryptoCurrencyList_state.map((item, idx) => {
               return (

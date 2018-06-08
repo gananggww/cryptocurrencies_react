@@ -5,8 +5,6 @@ import '../../style/header.css';
 
 import { cryptoCurrency100List, actionFilteringEventDispatch } from '../../redux/action/index_action.jsx'
 
-
-
 class Header extends Component {
   clickSearch() {
     this.props.cryptoCurrency100List_dispatch()
