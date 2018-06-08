@@ -42,11 +42,26 @@ export const actionSold = (payload) => {
   }
 }
 
+export const actionBought = (payload) => {
+  return {
+    type: 'COUNT_BOUGHT',
+    payload
+  }
+}
+
 export const sold = (payload) => {
   return (dispatch, getState) => {
     let current_myCryptoCurr = getState().myCryptoCurrency
     let result = current_myCryptoCurr - payload
     dispatch(actionSold(result))
+  }
+}
+
+export const bought = (payload) => {
+  return (dispatch, getState) => {
+    let current_myCryptoCurr = getState().myCryptoCurrency
+    let result = current_myCryptoCurr + payload
+    dispatch(actionBought(result))
   }
 }
 

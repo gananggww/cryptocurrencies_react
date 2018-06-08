@@ -5,7 +5,7 @@ const defaultState = {
   myCryptoCurrency: 10000000,
   openModal: 'none',
   cryptoCurrencyListByID: [],
-  sold: 0
+  bought: 0
 }
 
 const cryptoReducer = (state=defaultState, action) => {
@@ -21,7 +21,9 @@ const cryptoReducer = (state=defaultState, action) => {
     case 'GET_BY_ID':
       return {...state, cryptoCurrencyListByID: action.payload}
     case 'COUNT_SOLD':
-      return {...state, myCryptoCurrency: action.payload, }
+      return {...state, myCryptoCurrency: action.payload}
+    case 'COUNT_BOUGHT':
+      return {...state, myCryptoCurrency: action.payload}
     default:
     return state
   }

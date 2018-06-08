@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { actionOpenModal, sold } from '../../redux/action/index_action.jsx'
+import { actionOpenModal, sold, bought } from '../../redux/action/index_action.jsx'
 
 import { convertToUSD } from '../../EXT/idrtousd.js'
 import { convertToIDR } from '../../EXT/usdtoidr.js'
@@ -14,17 +14,35 @@ class Modal extends Component {
     super(props)
     this.state = {
       sell: 0,
-      status_buy: false,
-      status_sell: false,
+      buy:0,
       warning_message: ""
     }
   }
   close_modal() {
     this.props.actionOpenModal_dispatch('none')
   }
-  buy(e) {
+
+  validation(value) {
 
   }
+
+  buy(event) {
+    this.setState({buy:parseInt(event.target.value)})
+  }
+
+  buySubmit() {
+    if (this.state.buy == 0) {
+        this.setState({warning_message:"You cannot buying 0 Currency"})
+    } else if (this.state.buy < 0) {
+        this.setState({warning_message:"You cannot buying (-) Currency"})
+    } else if (this.state.buy > this.props.cryptoCurrencyListByID_state.quotes.USD.price) {
+        this.setState({warning_message:`${this.props.cryptoCurrencyListByID_state.name} Currency is not enough`})
+    } else {
+        this.props.bought_dispatch(this.state.buy)
+    }
+  }
+
+
   sell(event) {
     this.setState({sell:parseInt(event.target.value)})
   }
@@ -36,12 +54,8 @@ class Modal extends Component {
     } else if (this.state.sell > this.props.myCryptoCurrency_state) {
         this.setState({warning_message:"Your Currency is not enough"})
     } else {
-      this.props.sold_dispatch(this.state.sell)
+        this.props.sold_dispatch(this.state.sell)
     }
-  }
-
-  buyORsell() {
-
   }
 
   render() {
@@ -94,10 +108,10 @@ class Modal extends Component {
                         </div>
                         <div>
                           Buy:
-                          // <input type="number" onChange={(e) => this.buy(e)} disabled={this.state.status_buy}></input>
+                          <input type="number" onChange={(e) => this.buy(e)}></input>
                         </div>
                         <div>
-                          <button >Sell</button>
+                          <button onClick={() => this.buySubmit()}>Buy</button>
                         </div>
                     </section>
               </div>
@@ -120,7 +134,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actionOpenModal_dispatch: (payload) => dispatch(actionOpenModal(payload)),
-    sold_dispatch: (payload) => dispatch(sold(payload))
+    sold_dispatch: (payload) => dispatch(sold(payload)),
+    bought_dispatch: (payload) => dispatch(bought(payload)),
   }
 }
 
