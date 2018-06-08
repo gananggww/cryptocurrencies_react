@@ -14,4 +14,4 @@ npm install
 npm start
 ```
 
-Access the website via ``https://localhost:3000`` or API via ``https://localhost:3000/api``.
+Access the website via ``https://localhost:3000``
