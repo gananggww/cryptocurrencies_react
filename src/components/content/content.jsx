@@ -26,12 +26,16 @@ class Content extends Component {
   convert_currency(value) {
     if (value) {
       return '$' + value.toLocaleString('es-US')
+    } else {
+      return '$0'
     }
   }
 
   convert_percent(value) {
     if (value) {
       return value + "%"
+    } else {
+      return '0%'
     }
   }
 
@@ -54,7 +58,7 @@ class Content extends Component {
                     <div className="status-detail color-one">{this.convert_currency(item.quotes.USD.market_cap)}</div>
                     <div className="status-detail color-two">{this.convert_currency(item.quotes.USD.price)}</div>
                     <div className="status-detail color-one">{this.convert_currency(item.quotes.USD.volume_24h)}</div>
-                    <div className="status-detail color-two">{item.circulating_supply}</div>
+                    <div className="status-detail color-two">{item.circulating_supply || 0}</div>
                     <div id={item.quotes.USD.percent_change_24h.toString()[0] !== '-' ? 'color-black' : 'color-red'}
                       className="status-detail color-one right-item-detail">
                       {this.convert_percent(item.quotes.USD.percent_change_24h)}

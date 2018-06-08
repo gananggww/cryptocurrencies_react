@@ -16,10 +16,7 @@ class Header extends Component {
     return (
       <div>
         <div className="header">
-          <div id="title">
-            <img id="img-logo" src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_1.svg" alt="logo"></img>
-          </div>
-          <a onClick={() => this.clickSearch()}><input placeholder="Search Name on this page" onChange={(e)=> this.filtering_event(e)} id="searchBar" type="text" name="search"/></a>
+          <a onClick={() => this.clickSearch()}><input onChange={(e)=> this.filtering_event(e)} id="searchBar" type="text" name="search"/></a>
         </div>
       </div>
     );
