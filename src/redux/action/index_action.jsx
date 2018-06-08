@@ -22,9 +22,10 @@ export const actionCryptoCurrency100List = (payload) => {
 }
 
 
-export const cryptoCurrencyList = () => {
+export const cryptoCurrencyList = (sort_payload) => {
   return (dispatch, getState) => {
-    const url = `https://api.coinmarketcap.com/v2/ticker/?start=1&limit=20&structure=array`
+    const url = `https://api.coinmarketcap.com/v2/ticker/?start=1&limit=20&structure=array&sort=${sort_payload}`
+    console.log(url);
     axios.get(url)
     .then(resp => {
       dispatch(actionCryptoCurrencyList(resp.data.data))

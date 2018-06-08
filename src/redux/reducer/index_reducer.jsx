@@ -1,7 +1,8 @@
 const defaultState = {
   cryptoCurrency100List: [],
   cryptoCurrencyList: [],
-  filterEvent: ''
+  filterEvent: '',
+  myCryptoCurrency: 10000000
 }
 
 const cryptoReducer = (state=defaultState, action) => {

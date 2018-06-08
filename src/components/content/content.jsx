@@ -24,11 +24,13 @@ class Content extends Component {
   }
 
   convert_currency(value) {
-    return '$' + value.toLocaleString('es-US')
+    if (value) {
+      return '$' + value.toLocaleString('es-US')
+    }
   }
 
   convert_percent(value) {
-    if (true) {
+    if (value) {
       return value + "%"
     }
   }

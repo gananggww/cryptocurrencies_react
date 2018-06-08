@@ -30,13 +30,6 @@
   display: flex;
 }
 
-.text-sort {
-  cursor: pointer;
-}
-
-.text-sort:hover {
-  text-decoration: underline;
-}
 .status-detail {
   display: flex;
   border-left: solid 1px lightgrey;
