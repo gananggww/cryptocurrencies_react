@@ -3,9 +3,9 @@ Demo with react redux.
 
 ## Usage
 ### before installation:
-#### Install the latest vertion node.js : ``https://nodejs.org/en/download/package-manager/`` (supported all OS)
-#### Install NPM : ``https://www.npmjs.com/get-npm``
-#### Install GIT : ``https://git-scm.com/book/en/v2/Getting-Started-Installing-Git``
+1. Install the latest vertion node.js : ``https://nodejs.org/en/download/package-manager/`` (supported all OS)
+2. Install NPM : ``https://www.npmjs.com/get-npm``
+3. Install GIT : ``https://git-scm.com/book/en/v2/Getting-Started-Installing-Git``
 
 ### after installation:
 ```
