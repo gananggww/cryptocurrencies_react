@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { cryptoCurrencyList } from '../../redux/action/index_action.jsx'
+import { cryptoCurrencyList, actionOpenModal } from '../../redux/action/index_action.jsx'
 import { searchCoin } from '../../EXT/filter.js'
 import Sort from './sort.jsx';
+import Wallet from './wallet.jsx';
+
 
 import '../../style/content.css';
 
@@ -39,15 +41,20 @@ class Content extends Component {
     }
   }
 
+  open_modal() {
+    this.props.actionOpenModal_dispatch('block')
+  }
+
   render() {
     if (this.props.cryptoCurrencyList_state) {
       return (
         <div className="container">
+          <Wallet/>
           <Sort/>
           {
             this.props.cryptoCurrencyList_state.map((item, idx) => {
               return (
-                <div className="item">
+                <a onClick={()=> this.open_modal()} className="item">
                   <div className="name-list">
                     <div className="img-base-list">
                       <img src={`https://s2.coinmarketcap.com/static/img/coins/16x16/${item.id}.png`} alt={item.name}></img>
@@ -64,7 +71,7 @@ class Content extends Component {
                       {this.convert_percent(item.quotes.USD.percent_change_24h)}
                     </div>
                   </div>
-                </div>
+                </a>
               )
             })
           }
@@ -83,6 +90,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     cryptoCurrencyList_dispatch: () => dispatch(cryptoCurrencyList()),
+    actionOpenModal_dispatch: (payload) => dispatch(actionOpenModal(payload)),
+
   }
 }
 

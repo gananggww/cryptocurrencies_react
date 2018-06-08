@@ -21,6 +21,13 @@ export const actionCryptoCurrency100List = (payload) => {
   }
 }
 
+export const actionOpenModal = (payload) => {
+  return {
+    type: 'OPEN_MODAL',
+    payload
+  }
+}
+
 
 export const cryptoCurrencyList = (sort_payload) => {
   return (dispatch, getState) => {

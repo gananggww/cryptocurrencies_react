@@ -2,7 +2,8 @@ const defaultState = {
   cryptoCurrency100List: [],
   cryptoCurrencyList: [],
   filterEvent: '',
-  myCryptoCurrency: 10000000
+  myCryptoCurrency: 10000000,
+  openModal: 'none'
 }
 
 const cryptoReducer = (state=defaultState, action) => {
@@ -13,6 +14,8 @@ const cryptoReducer = (state=defaultState, action) => {
       return {...state, filterEvent: action.payload}
     case 'GET_ALL_100_CRYPTO_CURRENCY':
       return {...state, cryptoCurrency100List: action.payload}
+    case 'OPEN_MODAL':
+      return {...state, openModal: action.payload}
     default:
     return state
   }

@@ -4,12 +4,14 @@ import '../style/main.css';
 
 import Content from './content/content.jsx';
 import Header from './header/header.jsx';
+import Modal from './content/modal.jsx';
 
 
 class Main extends Component {
   render() {
     return (
       <div>
+        <Modal/>
         <div>
           <Header/>
         </div>
