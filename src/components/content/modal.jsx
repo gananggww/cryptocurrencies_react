@@ -15,15 +15,15 @@ class Modal extends Component {
     this.state = {
       sell: 0,
       buy:0,
-      warning_message: ""
+      warning_message: "",
+      tab_sell: 'tab-active',
+      tab_buy: 'tab-hidden',
+      tab_sell_active: 'tab-detail active',
+      tab_buy_active: 'tab-detail passive'
     }
   }
   close_modal() {
     this.props.actionOpenModal_dispatch('none')
-  }
-
-  validation(value) {
-
   }
 
   buy(event) {
@@ -58,62 +58,111 @@ class Modal extends Component {
     }
   }
 
+  tab_sell_clicked () {
+    if (this.state.tab_sell != 'tab-active') {
+      this.setState({
+        tab_sell:'tab-active',
+        tab_buy: 'tab-hidden',
+        tab_sell_active:'tab-detail active',
+        tab_buy_active:'tab-detail passive'
+      })
+    }
+  }
+
+  tab_buy_clicked () {
+    if (this.state.tab_buy != 'tab-active') {
+      this.setState({
+        tab_buy:'tab-active',
+        tab_sell: 'tab-hidden',
+        tab_buy_active:'tab-detail active',
+        tab_sell_active:'tab-detail passive',
+      })
+    }
+  }
+
+  warning() {
+    if (this.state.warning_message) {
+      return (
+        <div className="warning-modal">
+          {this.state.warning_message}
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
         <div className="modal" style={{display:`${this.props.openModal_state}`}}>
           <div class="modal-content">
             <a onClick={() => this.close_modal()} class="close">&times;</a>
               <div>
-                <input id="tab1" type="radio" name="tabs" checked/>
-                  <label for="tab1">Sell</label>
+                <div className="tab-layout">
+                  <a className={this.state.tab_sell_active} onClick={() => this.tab_sell_clicked()} id="tab1">
+                    Sell</a>
+                  <a className={this.state.tab_buy_active} onClick={() => this.tab_buy_clicked()} id="tab2">
+                    Buy</a>
+                  <a className="tab-passive"></a>
+                </div>
 
-                <input id="tab2" type="radio" name="tabs"/>
-                  <label for="tab2">Buy</label>
-
-                    <section id="content1">
-                      {this.state.warning_message ? this.state.warning_message: ""}
+                <section id="content1" className={this.state.tab_sell}>
+                  <div className="status-currency">
+                    Your Current Currency: {this.props.myCryptoCurrency_state} IDR / {convertToUSD(this.props.myCryptoCurrency_state)} USD
+                  </div>
+                  {this.warning()}
+                  <div className="form">
+                    <div >
                       <div>
-                        your Currency: {this.props.myCryptoCurrency_state} IDR /
-                        {convertToUSD(this.props.myCryptoCurrency_state)} USD
+                        Name : {this.props.cryptoCurrencyListByID_state.name} <img src={`https://s2.coinmarketcap.com/static/img/coins/16x16/${this.props.cryptoCurrencyListByID_state.id}.png`} alt={this.props.cryptoCurrencyListByID_state.name}></img>
                       </div>
                       <div>
-                        <div> Name : {this.props.cryptoCurrencyListByID_state.name}</div>
-                        <div>
-                          Price :{this.props.cryptoCurrencyListByID_state.quotes ? convertToIDR(this.props.cryptoCurrencyListByID_state.quotes.USD.price) : 0} IDR /
-                          {this.props.cryptoCurrencyListByID_state.quotes ? this.props.cryptoCurrencyListByID_state.quotes.USD.price : 0} USD
-                        </div>
+                        Price : {this.props.cryptoCurrencyListByID_state.quotes ? convertToIDR(this.props.cryptoCurrencyListByID_state.quotes.USD.price) : 0} IDR / {this.props.cryptoCurrencyListByID_state.quotes ? this.props.cryptoCurrencyListByID_state.quotes.USD.price : 0} USD
                       </div>
                       <div>
-                        Sell:
-                        <input type="number" onChange={(e) => this.sell(e)}></input>
+                        Rank : #{this.props.cryptoCurrencyListByID_state.rank}
                       </div>
                       <div>
-                        <button onClick={() => this.sellSubmit()}>Sell</button>
+                        Source link : <a href={`https://coinmarketcap.com/currencies/${this.props.cryptoCurrencyListByID_state.website_slug}/`}>Click Me!</a>
                       </div>
-                    </section>
+                    </div>
+                    <div>
+                      IDR : <input className="input" type="number" onChange={(e) => this.sell(e)}></input>
+                    </div>
+                  </div>
+                  <div className="submit-layout">
+                    <a className="button-submit" onClick={() => this.sellSubmit()}>Sell</a>
+                  </div>
+                </section>
 
 
 
-                    <section id="content2">
-                        <div>
-                          your Currency: {this.props.myCryptoCurrency_state} IDR /
-                          {convertToUSD(this.props.myCryptoCurrency_state)} USD
-                        </div>
-                        <div>
-                          <div> Name : {this.props.cryptoCurrencyListByID_state.name}</div>
-                          <div>
-                            Price :{this.props.cryptoCurrencyListByID_state.quotes ? convertToIDR(this.props.cryptoCurrencyListByID_state.quotes.USD.price) : 0} IDR /
-                            {this.props.cryptoCurrencyListByID_state.quotes ? this.props.cryptoCurrencyListByID_state.quotes.USD.price : 0} USD
-                          </div>
-                        </div>
-                        <div>
-                          Buy:
-                          <input type="number" onChange={(e) => this.buy(e)}></input>
-                        </div>
-                        <div>
-                          <button onClick={() => this.buySubmit()}>Buy</button>
-                        </div>
-                    </section>
+                <section id="content1" className={this.state.tab_buy}>
+                  <div className="status-currency">
+                    Your Current Currency: {this.props.myCryptoCurrency_state} IDR / {convertToUSD(this.props.myCryptoCurrency_state)} USD
+                  </div>
+                  {this.warning()}
+                  <div className="form">
+                    <div >
+                      <div>
+                        Name : {this.props.cryptoCurrencyListByID_state.name} <img src={`https://s2.coinmarketcap.com/static/img/coins/16x16/${this.props.cryptoCurrencyListByID_state.id}.png`} alt={this.props.cryptoCurrencyListByID_state.name}></img>
+                      </div>
+                      <div>
+                        Price : {this.props.cryptoCurrencyListByID_state.quotes ? convertToIDR(this.props.cryptoCurrencyListByID_state.quotes.USD.price) : 0} IDR / {this.props.cryptoCurrencyListByID_state.quotes ? this.props.cryptoCurrencyListByID_state.quotes.USD.price : 0} USD
+                      </div>
+                      <div>
+                        Rank : #{this.props.cryptoCurrencyListByID_state.rank}
+                      </div>
+                      <div>
+                        Source link : <a href={`https://coinmarketcap.com/currencies/${this.props.cryptoCurrencyListByID_state.website_slug}/`}>Click Me!</a>
+                      </div>
+                    </div>
+                    <div>
+                      IDR : <input className="input" type="number" onChange={(e) => this.buy(e)}></input>
+                    </div>
+                  </div>
+                  <div className="submit-layout">
+                    <a className="button-submit" onClick={() => this.buySubmit()}>Buy</a>
+                  </div>
+                </section>
               </div>
 
 

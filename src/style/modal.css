@@ -26,6 +26,10 @@
     font-weight: bold;
 }
 
+.tab-hidden {
+  display: none
+}
+
 .close:hover,
 .close:focus {
     color: #000;
@@ -33,60 +37,85 @@
     cursor: pointer;
 }
 
-
-
-
-
-
-
-/*================*/
-
-/*body {
-  font: 14px/1 'Open Sans', sans-serif;
-  color: #555;
-  background: #eee;
-}*/
-
-
-section {
-  display: none;
-  padding: 20px 0 0;
-  border-top: 1px solid #ddd;
+.tab-layout {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-#tab1, #tab2 {
-  display: none;
+.tab-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  border-bottom: 1px solid lightgrey;
 }
 
-label {
-  display: inline-block;
-  margin: 0 0 -1px;
-  padding: 15px 25px;
-  font-weight: 600;
-  text-align: center;
-  color: #bbb;
-  border: 1px solid transparent;
+.active {
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  border-top: 1px solid #00BCD4;
+  border-bottom: none;
 }
 
-label:before {
-  font-family: fontawesome;
-  font-weight: normal;
-  margin-right: 10px;
-}
-
-label:hover {
-  color: #888;
+.passive {
   cursor: pointer;
 }
 
-input:checked + label {
-  color: #555;
-  border: 1px solid #ddd;
-  border-top: 2px solid #00BCD4;
-  border-bottom: 1px solid #fff;
+.input {
+  outline: none;
+  border-radius: 2px;
+  box-sizing: border-box;
+  border: 1px solid lightgrey;
+  height: 25px;
+  padding-left: 10px
 }
 
-#tab1:checked ~ #content1,
-#tab2:checked ~ #content2 {
-  display: block;
+.tab-passive {
+  width: 100%;
+  border-bottom: 1px solid lightgrey;
+}
+
+.status-currency {
+  height: 25px;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 25px;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 30px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.submit-layout {
+  display: flex;
+  width: 100%
+}
+
+.button-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  background-color: #00BCD4;
+  color:white;
+  border-radius: 2px;
+}
+.button-submit:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 2px 1px #888888;
+}
+.warning-modal {
+  padding: 10px;
+  border-radius: 2px;
+  background-color: #FFE0B2;
+  margin-bottom: 10px;
+  color: #FF9800
 }
