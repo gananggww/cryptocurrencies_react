@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { cryptoCurrencyList, actionOpenModal, cryptoCurrencyListByID } from '../../redux/action/index_action.jsx'
 import { searchCoin } from '../../EXT/filter.js'
 import Sort from './sort.jsx';
+import Pagination from './pagination.jsx';
+
 import Wallet from './wallet.jsx';
 
 
@@ -50,7 +52,10 @@ class Content extends Component {
     if (this.props.cryptoCurrencyList_state) {
       return (
         <div className="container">
-          <Wallet/>
+          <div  className="top-content">
+            <Wallet/>
+            <Pagination/>
+          </div>
           <Sort/>
           {
             this.props.cryptoCurrencyList_state.map((item, idx) => {

@@ -93,8 +93,8 @@ class Modal extends Component {
   render() {
     return (
         <div className="modal" style={{display:`${this.props.openModal_state}`}}>
-          <div class="modal-content">
-            <a onClick={() => this.close_modal()} class="close">&times;</a>
+          <div className="modal-content">
+            <a onClick={() => this.close_modal()} className1="close">&times;</a>
               <div>
                 <div className="tab-layout">
                   <a className={this.state.tab_sell_active} onClick={() => this.tab_sell_clicked()} id="tab1">

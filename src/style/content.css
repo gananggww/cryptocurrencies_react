@@ -8,6 +8,13 @@
   justify-content: space-between;
   cursor: pointer;
 }
+.top-content {
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 10px;
+}
 
 .name-list {
   display: flex;

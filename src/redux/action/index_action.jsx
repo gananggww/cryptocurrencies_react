@@ -49,6 +49,19 @@ export const actionBought = (payload) => {
   }
 }
 
+export const actionNext = (payload) => {
+  return {
+    type: 'PAGE_NEXT',
+    payload
+  }
+}
+export const actionPreviews = (payload) => {
+  return {
+    type: 'PAGE_PREVIEWS',
+    payload
+  }
+}
+
 export const sold = (payload) => {
   return (dispatch, getState) => {
     let current_myCryptoCurr = getState().myCryptoCurrency
@@ -68,7 +81,9 @@ export const bought = (payload) => {
 
 export const cryptoCurrencyList = (sort_payload) => {
   return (dispatch, getState) => {
-    const url = `https://api.coinmarketcap.com/v2/ticker/?start=1&limit=20&structure=array&sort=${sort_payload}`
+    let start = getState().start
+    let limit = getState().limit
+    const url = `https://api.coinmarketcap.com/v2/ticker/?start=${start}&limit=${limit}&structure=array&sort=${sort_payload}`
     console.log(url);
     axios.get(url)
     .then(resp => {
