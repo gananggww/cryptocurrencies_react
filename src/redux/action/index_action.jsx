@@ -28,6 +28,28 @@ export const actionOpenModal = (payload) => {
   }
 }
 
+export const actionCryptoCurrencyListByID = (payload) => {
+  return {
+    type: 'GET_BY_ID',
+    payload
+  }
+}
+
+export const actionSold = (payload) => {
+  return {
+    type: 'COUNT_SOLD',
+    payload
+  }
+}
+
+export const sold = (payload) => {
+  return (dispatch, getState) => {
+    let current_myCryptoCurr = getState().myCryptoCurrency
+    let result = current_myCryptoCurr - payload
+    dispatch(actionSold(result))
+  }
+}
+
 
 export const cryptoCurrencyList = (sort_payload) => {
   return (dispatch, getState) => {
@@ -36,6 +58,16 @@ export const cryptoCurrencyList = (sort_payload) => {
     axios.get(url)
     .then(resp => {
       dispatch(actionCryptoCurrencyList(resp.data.data))
+    }).catch(err => console.log(err))
+  }
+}
+
+export const cryptoCurrencyListByID = (id) => {
+  return (dispatch, getState) => {
+    const url = `https://api.coinmarketcap.com/v2/ticker/${id}/`
+    axios.get(url)
+    .then(resp => {
+      dispatch(actionCryptoCurrencyListByID(resp.data.data))
     }).catch(err => console.log(err))
   }
 }

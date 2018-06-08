@@ -3,5 +3,5 @@ export const searchCoin = ({ cryptoCurrencyList, filterEvent, cryptoCurrency100L
   if (filterEventTrim === '')
     return cryptoCurrencyList
   else
-    return cryptoCurrency100List.filter(item => item.name.toLowerCase().includes(filterEventTrim) || item.name.toLowerCase().includes(filterEventTrim) )
+    return cryptoCurrency100List.filter(item => item.name.toLowerCase().includes(filterEventTrim))
 }

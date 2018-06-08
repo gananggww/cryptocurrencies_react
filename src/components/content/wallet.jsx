@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-
+import { convertToUSD } from '../../EXT/idrtousd.js'
 import '../../style/wallet.css';
 
 class Wallet extends Component {
   render() {
     return (
       <div className="my-currency">
-        Your Currency : {this.props.myCryptoCurrency_state}
+        Your Currency : {this.props.myCryptoCurrency_state} IDR / ({convertToUSD(this.props.myCryptoCurrency_state)} USD)
       </div>
     );
   }
